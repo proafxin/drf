@@ -23,6 +23,11 @@ from rest_framework.permissions import (
     IsAdminUser,
     IsAuthenticated,
 )
+from rest_framework.authentication import (
+    BasicAuthentication,
+    SessionAuthentication,
+    TokenAuthentication,
+)
 
 from rest_api.models import (
     Author,
@@ -58,11 +63,21 @@ from rest_api.model_serializers import (
 class ArticleList(ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    authentication_classes = [
+        SessionAuthentication,
+        BasicAuthentication,
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
 
 class AuthorList(ListCreateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    authentication_classes = [
+        SessionAuthentication,
+        BasicAuthentication,
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
 
 # class ArticleDetail(APIView):
@@ -98,19 +113,39 @@ class AuthorList(ListCreateAPIView):
 class ArticleDetailGeneric(RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    authentication_classes = [
+        BasicAuthentication,
+        SessionAuthentication,
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
 
 class ArticleDetailPost(CreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    authentication_classes = [
+        SessionAuthentication,
+        BasicAuthentication,
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
 
 class AuthorDetailGeneric(RetrieveUpdateDestroyAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    authentication_classes = [
+        SessionAuthentication,
+        BasicAuthentication,
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
 
 class AuthorDetailPost(CreateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    authentication_classes = [
+        SessionAuthentication,
+        BasicAuthentication,
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
