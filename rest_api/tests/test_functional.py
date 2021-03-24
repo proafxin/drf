@@ -100,4 +100,67 @@ class TestAuthor(APITestCase):
         self.assertIsInstance(data, list)
         self.assertEqual(len(data), 3)
         for i in range(len(data)):
+            self.assertTrue('id' in data[i])
             self.assertEqual(data[i]['id'], i+1)
+            self.assertIsInstance(data[i], dict)
+    
+    def test_get_article_detail(self):
+        client = self.get_request_client()
+        response = client.get(URL+'/article/1')
+        self.assertEqual(response.status_code, HTTP_200_OK)
+        data = response.json()
+        self.assertIsInstance(data, dict)
+        self.assertEqual(data['id'], 1)
+
+    def test_post_article_detail(self):
+        client = self.get_request_client()
+        params = {
+            'title': 'new article',
+            'author': 2,
+            'subject': 'new subject',
+            'body': 'new blah blah',
+        }
+        response = client.post(URL+'/article/', data=params)
+        self.assertEqual(response.status_code, HTTP_201_CREATED)
+        data = response.json()
+        self.assertTrue('id' in data)
+        self.assertEqual(data['id'], 4)
+    
+    def test_get_author_list(self):
+        client = self.get_request_client()
+        response = client.get(URL+'/authors/')
+        self.assertEqual(response.status_code, HTTP_200_OK)
+        data = response.json()
+        self.assertIsInstance(data, list)
+        self.assertEqual(len(data), 2)
+        for i in range(len(data)):
+            self.assertTrue('id' in data[i])
+            self.assertEqual(data[i]['id'], i+1)
+            self.assertIsInstance(data[i], dict)
+    
+    def test_get_author_detail(self):
+        client = self.get_request_client()
+        response = client.get(URL+'/author/1')
+        self.assertEqual(response.status_code, HTTP_200_OK)
+        data = response.json()
+        self.assertIsInstance(data, dict)
+        self.assertTrue('id' in data)
+        self.assertEqual(data['id'], 1)
+        self.assertTrue('articles' in data)
+        for x in data['articles']:
+            self.assertIsInstance(x, dict)
+            self.assertTrue('author' in x)
+            self.assertEqual(x['author'], 1)
+    
+    def test_post_author_detail(self):
+        client = self.get_request_client()
+        params = {
+            'name': 'new author',
+            'username': 'new',
+            'email': 'new@test.com',
+        }
+        response = client.post(URL+'/author/', data=params)
+        self.assertEqual(response.status_code, HTTP_201_CREATED)
+        data = response.json()
+        self.assertTrue('id' in data)
+        self.assertEqual(data['id'], 3)
