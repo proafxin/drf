@@ -61,7 +61,7 @@ from rest_api.model_serializers import (
 #         return json_response
 
 class ArticleList(ListCreateAPIView):
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().order_by('id')
     serializer_class = ArticleSerializer
     authentication_classes = [
         SessionAuthentication,
