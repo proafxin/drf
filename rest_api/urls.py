@@ -17,6 +17,6 @@ urlpatterns = [
     path('article/<int:pk>', ArticleDetailGeneric.as_view(), name='article'),
     path('article/', ArticleDetailPost.as_view(), name='article-post'),
     path('author/', AuthorDetailPost.as_view(), name='author-post'),
-    path('author/<int:pk>', AuthorDetailGeneric.as_view(), name='author-post'),
+    path('author/<int:pk>', AuthorDetailGeneric.as_view(), name='author-all'),
     path('api-auth-token/', obtain_auth_token),
 ]

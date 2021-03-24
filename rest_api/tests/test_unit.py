@@ -18,7 +18,7 @@ from rest_api.models import (
 USERNAME = 'abc'
 PASSWORD = 'test'
 
-class TestAuthor(APITestCase):
+class TestUnit(APITestCase):
     
     def setUp(self):
         self.user = user = User.objects.create_user(

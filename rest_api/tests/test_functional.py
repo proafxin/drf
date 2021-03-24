@@ -29,7 +29,7 @@ PASSWORD = 'newpassword'
 URL = 'http://{}:{}'.format(IP, PORT)
 auth_invalid = HTTPBasicAuth(username='wrong', password='wrong')
 
-class TestAuthor(APITestCase):
+class TestFunctions(APITestCase):
     
     def setUp(self):
         self.user = user = User.objects.create_user(
