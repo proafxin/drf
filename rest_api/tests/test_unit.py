@@ -73,6 +73,7 @@ class TestAuthor(APITestCase):
         self.assertEqual(len(data), 3)
         for i in range(len(data)):
             self.assertEqual(data[i]['id'], i+1)
+            self.assertIsInstance(data[i], dict)
         self.assertEqual(data[2]['title'], 'title big')
         self.assertEqual(data[0]['title'], 'title1')
         self.assertEqual(data[1]['title'], 'title2')
@@ -121,7 +122,9 @@ class TestAuthor(APITestCase):
         data = response.json()
         self.assertIsInstance(data, list)
         self.assertEqual(len(data), 2)
-        for i in range(len(data)): 
+        for i in range(len(data)):
+            self.assertIsInstance(data[i], dict)
+            self.assertTrue('id' in data[i])
             self.assertEqual(data[i]['id'], i+1)
         self.client.logout()
         self.client.force_authenticate(user=None)
@@ -135,9 +138,12 @@ class TestAuthor(APITestCase):
         self.assertEqual(response.status_code, HTTP_200_OK)
         data = response.json()
         self.assertIsInstance(data, dict)
+        self.assertTrue('id' in data)
         self.assertEqual(data['id'], 2)
         self.assertEqual(len(data['articles']), 2)
         for x in data['articles']:
+            self.assertIsInstance(x, dict)
+            self.assertTrue('author' in x)
             self.assertEqual(x['author'], 2)
         self.client.logout()
         response = self.client.get(url)
@@ -154,6 +160,7 @@ class TestAuthor(APITestCase):
         response = self.client.post(path=url, data=params)
         self.assertEqual(response.status_code, HTTP_201_CREATED)
         data = response.json()
+        self.assertTrue('id' in data)
         self.assertEqual(data['id'], 3)
         self.client.logout()
         response = self.client.post(url, params)
