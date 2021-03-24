@@ -71,7 +71,7 @@ class ArticleList(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
 class AuthorList(ListCreateAPIView):
-    queryset = Author.objects.all()
+    queryset = Author.objects.all().order_by('id')
     serializer_class = AuthorSerializer
     authentication_classes = [
         SessionAuthentication,
@@ -111,7 +111,7 @@ class AuthorList(ListCreateAPIView):
 #         return response
 
 class ArticleDetailGeneric(RetrieveUpdateDestroyAPIView):
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().order_by('id')
     serializer_class = ArticleSerializer
     authentication_classes = [
         BasicAuthentication,
