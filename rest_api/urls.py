@@ -1,4 +1,5 @@
 from django.urls import path
+from rest_framework.authtoken.views import obtain_auth_token
 
 from rest_api.views import (
     AuthorList,
@@ -17,4 +18,5 @@ urlpatterns = [
     path('article/', ArticleDetailPost.as_view(), name='article-post'),
     path('author/', AuthorDetailPost.as_view(), name='author-post'),
     path('author/<int:pk>', AuthorDetailGeneric.as_view(), name='author-post'),
+    path('api-auth-token/', obtain_auth_token),
 ]
