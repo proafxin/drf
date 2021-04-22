@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 from rest_framework.status import (
     HTTP_200_OK,
     HTTP_201_CREATED,
-    HTTP_400_BAD_REQUEST,
-    HTTP_401_UNAUTHORIZED,
+    # HTTP_400_BAD_REQUEST,
+    # HTTP_401_UNAUTHORIZED,
     HTTP_403_FORBIDDEN,
-    HTTP_404_NOT_FOUND,
+    # HTTP_404_NOT_FOUND,
 )
 from rest_framework.test import APITestCase
 
@@ -16,14 +16,13 @@ from rest_api.models import (
 )
 
 
-USERNAME = 'abc'
-PASSWORD = 'test'
-
+USERNAME = 'newuser'
+PASSWORD = 'password'
 
 class TestIntegration(APITestCase):
 
     def setUp(self):
-        self.user = user = User.objects.create_user(
+        self.user = User.objects.create_user(
             username=USERNAME,
             password=PASSWORD,
             email='abc@abc.com',

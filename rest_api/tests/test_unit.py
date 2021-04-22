@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 from rest_framework.status import (
     HTTP_200_OK,
     HTTP_201_CREATED,
-    HTTP_400_BAD_REQUEST,
-    HTTP_401_UNAUTHORIZED,
+    # HTTP_400_BAD_REQUEST,
+    # HTTP_401_UNAUTHORIZED,
     HTTP_403_FORBIDDEN,
-    HTTP_404_NOT_FOUND,
+    # HTTP_404_NOT_FOUND,
 )
 from rest_framework.test import APITestCase
 
@@ -23,7 +23,7 @@ PASSWORD = 'test'
 class TestUnit(APITestCase):
     
     def setUp(self):
-        self.user = user = User.objects.create_user(
+        self.user = User.objects.create_user(
             username=USERNAME,
             password=PASSWORD,
             email='abc@abc.com',
@@ -80,7 +80,10 @@ class TestUnit(APITestCase):
         self.assertEqual(data[0]['title'], 'title1')
         self.assertEqual(data[1]['title'], 'title2')
         self.client.logout()
-        self.assertFalse(self.client.force_authenticate(user=None))
+        self.assertFalse(self.client.login(
+            username=None,
+            password=None,
+        ))
         response = self.client.get(reverse(url))
         self.assertEqual(response.status_code, HTTP_403_FORBIDDEN)
     
@@ -93,7 +96,10 @@ class TestUnit(APITestCase):
         self.assertIsInstance(data, dict)
         self.assertEqual(data['title'], 'title1')
         self.client.logout()
-        self.assertFalse(self.client.force_authenticate(user=None))
+        self.assertFalse(self.client.login(
+            username=None,
+            password=None,
+        ))
         response = self.client.get(url)
         self.assertNotEqual(response.status_code, HTTP_200_OK)
     
@@ -124,12 +130,15 @@ class TestUnit(APITestCase):
         data = response.json()
         self.assertIsInstance(data, list)
         self.assertEqual(len(data), 2)
-        for i in range(len(data)):
-            self.assertIsInstance(data[i], dict)
-            self.assertTrue('id' in data[i])
-            self.assertEqual(data[i]['id'], i+1)
+        for i, data_i in enumerate(data):
+            self.assertIsInstance(data_i, dict)
+            self.assertTrue('id' in data_i)
+            self.assertEqual(data_i['id'], i+1)
         self.client.logout()
-        self.client.force_authenticate(user=None)
+        self.client.login(
+            username=None,
+            password=None,
+        )
         response = self.client.get(url)
         self.assertNotEqual(response.status_code, HTTP_200_OK)
     
@@ -143,10 +152,10 @@ class TestUnit(APITestCase):
         self.assertTrue('id' in data)
         self.assertEqual(data['id'], 2)
         self.assertEqual(len(data['articles']), 2)
-        for x in data['articles']:
-            self.assertIsInstance(x, dict)
-            self.assertTrue('author' in x)
-            self.assertEqual(x['author'], 2)
+        for data_i in data['articles']:
+            self.assertIsInstance(data_i, dict)
+            self.assertTrue('author' in data_i)
+            self.assertEqual(data_i['author'], 2)
         self.client.logout()
         response = self.client.get(url)
         self.assertNotEqual(response.status_code, HTTP_200_OK)
