@@ -15,9 +15,6 @@ class Author(Model):
     email = EmailField(max_length=50)
     date = DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.name
-
 class Article(Model):
     #article_id = AutoField(primary_key=True)
     title = CharField(max_length=100)
@@ -37,6 +34,3 @@ class Article(Model):
             'subject',
         ]
         ordering = ['title']
-    
-    def __str__(self):
-        return self.title
