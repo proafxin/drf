@@ -1,3 +1,8 @@
+"""
+Admin related stuff for example
+registering models for accessing from admin panel
+"""
+
 from django.contrib import admin
 
 from rest_api.models import (

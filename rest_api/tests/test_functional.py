@@ -1,6 +1,9 @@
+"""
+Functional test for rest_api
+"""
+
 from rest_framework.test import APITestCase
 from rest_framework.status import HTTP_200_OK
-from django.urls import reverse
 from requests import (
     get,
     post,
@@ -11,11 +14,19 @@ PASSWORD = 'abcdef123'
 
 
 class FunctionalTest(APITestCase):
+    """
+    Functional test for author article rest api
+    """
 
     def setUp(self):
         pass
 
     def test_token(self):
+        """
+        Retrieve the token for a particular user using a post request
+        Then use this token to authenticate that user
+        """
+
         url = 'http://127.0.0.1:8000/api_token/'
         params = {
             'username': USERNAME,

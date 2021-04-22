@@ -1,7 +1,10 @@
+"""
+Entity definitions
+"""
+
 from django.db.models import (
     Model,
     CharField,
-    AutoField,
     EmailField,
     DateTimeField,
     ForeignKey,
@@ -13,6 +16,7 @@ class Author(Model):
     """
     Model corresponding "author" entity
     """
+
     name = CharField(max_length=50)
     username = CharField(max_length=50, unique=True)
     email = EmailField(max_length=50)
@@ -23,6 +27,7 @@ class Article(Model):
     """
     Model corresponding "article" entity
     """
+
     title = CharField(max_length=100)
     author = ForeignKey(
         Author,
@@ -34,6 +39,11 @@ class Article(Model):
     body = CharField(max_length=500)
 
     class Meta:
+        """
+        Specify how a model can be identified as unique
+        Also how to order them
+        """
+
         unique_together = [
             'author',
             'title',

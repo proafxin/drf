@@ -1,62 +1,38 @@
+"""
+Integration test for rest_api
+"""
+
 from django.urls import reverse
-from django.contrib.auth.models import User
 from rest_framework.status import (
     HTTP_200_OK,
     HTTP_201_CREATED,
-    # HTTP_400_BAD_REQUEST,
-    # HTTP_401_UNAUTHORIZED,
-    HTTP_403_FORBIDDEN,
-    # HTTP_404_NOT_FOUND,
 )
 from rest_framework.test import APITestCase
 
-from rest_api.models import (
-    Author,
-    Article,
+from rest_api.tests.main import (
+    create_authors_articles,
+    USERNAME,
+    PASSWORD,
 )
 
 
-USERNAME = 'newuser'
-PASSWORD = 'password'
-
 class TestIntegration(APITestCase):
+    """
+    Integration test for author/article rest api
+    """
 
     def setUp(self):
-        self.user = User.objects.create_user(
-            username=USERNAME,
-            password=PASSWORD,
-            email='abc@abc.com',
-        )
-        author1 = Author.objects.create(
-            name='test',
-            username='testname',
-            email='test@test.com',
-        )
-        author2 = Author.objects.create(
-            name='test2',
-            username='testname2',
-            email='test2@test.com',
-        )
-        Article.objects.create(
-            author=author1,
-            title='title1',
-            subject='subject1',
-            body='body1',
-        )
-        Article.objects.create(
-            title='title2',
-            author=author2,
-            subject='subject2',
-            body='body2',
-        )
-        Article.objects.create(
-            title='title big',
-            author=author2,
-            subject='subject big',
-            body='body big',
-        )
-    
+        """
+        Call function to create authors and articles
+        """
+        create_authors_articles()
+
     def test_endpoint_integration(self):
+        """
+        Test all the endpoints in this method
+        to see if any API breaks another
+        """
+
         self.assertTrue(self.client.login(
             username=USERNAME,
             password=PASSWORD,
