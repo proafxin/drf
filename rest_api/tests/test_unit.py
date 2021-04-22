@@ -15,8 +15,10 @@ from rest_api.models import (
     Article,
 )
 
+
 USERNAME = 'abc'
 PASSWORD = 'test'
+
 
 class TestUnit(APITestCase):
     

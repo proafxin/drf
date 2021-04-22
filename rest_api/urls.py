@@ -4,12 +4,12 @@ from rest_framework.authtoken.views import obtain_auth_token
 from rest_api.views import (
     AuthorList,
     ArticleList,
-    #ArticleDetail,
     ArticleDetailGeneric,
     ArticleDetailPost,
     AuthorDetailPost,
     AuthorDetailGeneric,
 )
+
 
 urlpatterns = [
     path('articles/', ArticleList.as_view(), name='articles'),

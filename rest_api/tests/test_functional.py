@@ -9,6 +9,7 @@ from requests import (
 USERNAME = 'masum'
 PASSWORD = 'abcdef123'
 
+
 class FunctionalTest(APITestCase):
 
     def setUp(self):

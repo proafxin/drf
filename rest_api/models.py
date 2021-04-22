@@ -8,15 +8,21 @@ from django.db.models import (
     CASCADE,
 )
 
+
 class Author(Model):
-    #author_id = AutoField(primary_key=True)
+    """
+    Model corresponding "author" entity
+    """
     name = CharField(max_length=50)
     username = CharField(max_length=50, unique=True)
     email = EmailField(max_length=50)
     date = DateTimeField(auto_now_add=True)
 
+
 class Article(Model):
-    #article_id = AutoField(primary_key=True)
+    """
+    Model corresponding "article" entity
+    """
     title = CharField(max_length=100)
     author = ForeignKey(
         Author,

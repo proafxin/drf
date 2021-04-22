@@ -5,5 +5,6 @@ from rest_api.models import (
     Author,
 )
 
+
 admin.site.register(Article)
 admin.site.register(Author)

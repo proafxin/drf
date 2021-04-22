@@ -7,6 +7,7 @@ from rest_api.models import (
     Author,
 )
 
+
 class ArticleSerializer(ModelSerializer):
 
     class Meta:
@@ -18,6 +19,7 @@ class ArticleSerializer(ModelSerializer):
             'subject',
             'body',
         ]
+
 
 class AuthorSerializer(ModelSerializer):
     articles = ArticleSerializer(
