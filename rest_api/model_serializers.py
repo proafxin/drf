@@ -2,6 +2,8 @@
 Serializer of the models for exposing to rest api
 """
 
+# Author: Masum Billal
+
 from rest_framework.serializers import (
     ModelSerializer,
 )
