@@ -20,13 +20,13 @@ class Author(Model):
     ----------
     name : string
         Full name of the author
-    
+
     username : string
         Username of the author. Must be unique
-    
+
     email : string
         Email of the author, not necessarily unique
-    
+
     date : datetime
         Automatically adds the current datetime
     """
@@ -45,7 +45,7 @@ class Article(Model):
     ----------
     title : string
         Title of the article
-    
+
     author : Author
         Corresponding author who wrote the article
 

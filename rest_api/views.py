@@ -43,15 +43,15 @@ class ArticleList(ListCreateAPIView):
     ----------
     queryset : List
         A list of objects that will be used to show the list
-    
+
     serializer_class : Serializer
         The class which will be used to serialize article
         objects to JSON and vice versa
-    
+
     authentication_classes: List
         Specifies which authentication class to use. Here,
         session, token and basic authentications are used
-    
+
     permission_classes : List
         Specifies which permission class to use. Here,
         only authenticated users are permitted.
@@ -71,15 +71,15 @@ class AuthorList(ListCreateAPIView):
     ----------
     queryset : List
         A list of objects that will be used to show the list
-    
+
     serializer_class : Serializer
         The class which will be used to serialize author
         objects to JSON and vice versa
-    
+
     authentication_classes: List
         Specifies which authentication class to use. Here,
         session, token and basic authentications are used
-    
+
     permission_classes : List
         Specifies which permission class to use. Here,
         only authenticated users are permitted.
@@ -101,15 +101,15 @@ class ArticleDetailGeneric(RetrieveUpdateDestroyAPIView):
         A list of objects that will be used to show the list
         Even though a single article will be shown in the page,
         it is still required to pass a list of articles
-    
+
     serializer_class : Serializer
         The class which will be used to serialize article
         objects to JSON and vice versa
-    
+
     authentication_classes: List
         Specifies which authentication class to use. Here,
         session, token and basic authentications are used
-    
+
     permission_classes : List
         Specifies which permission class to use. Here,
         only authenticated users are permitted.
@@ -131,15 +131,15 @@ class ArticleDetailPost(CreateAPIView):
         A list of objects that will be used to show the list
         Even though a single article will be shown in the page,
         it is still required to pass a list of articles
-    
+
     serializer_class : Serializer
         The class which will be used to serialize article
         objects to JSON and vice versa
-    
+
     authentication_classes: List
         Specifies which authentication class to use. Here,
         session, token and basic authentications are used
-    
+
     permission_classes : List
         Specifies which permission class to use. Here,
         only authenticated users are permitted.
@@ -161,15 +161,15 @@ class AuthorDetailGeneric(RetrieveUpdateDestroyAPIView):
         A list of objects that will be used to show the list
         Even though a single author will be shown in the page,
         it is still required to pass a list
-    
+
     serializer_class : Serializer
         The class which will be used to serialize author
         objects to JSON and vice versa
-    
+
     authentication_classes: List
         Specifies which authentication class to use. Here,
         session, token and basic authentications are used
-    
+
     permission_classes : List
         Specifies which permission class to use. Here,
         only authenticated users are permitted.
@@ -191,15 +191,15 @@ class AuthorDetailPost(CreateAPIView):
         A list of objects that will be used to show the list
         Even though a single author will be shown in the page,
         it is still required to pass a list
-    
+
     serializer_class : Serializer
         The class which will be used to serialize article
         object to JSON and vice versa
-    
+
     authentication_classes: List
         Specifies which authentication class to use. Here,
         session, token and basic authentications are used
-    
+
     permission_classes : List
         Specifies which permission class to use. Here,
         only authenticated users are permitted.
