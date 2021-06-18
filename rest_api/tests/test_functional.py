@@ -16,6 +16,14 @@ PASSWORD = 'abcdef123'
 class FunctionalTest(APITestCase):
     """
     Functional test for author article rest api
+
+    Methods
+    -------
+    setUp()
+        Use this method to declare anything you need for testing
+
+    test_token()
+        Functional test to see if token creation properly works
     """
 
     def setUp(self):
@@ -25,6 +33,22 @@ class FunctionalTest(APITestCase):
         """
         Retrieve the token for a particular user using a post request
         Then use this token to authenticate that user
+
+        Tests the endpoint:
+            POST /api_token/
+        
+        Endpoint Parameters
+        -------------------
+            username : string
+                Username of a valid user
+
+            password : string
+                Password of the same valid user
+
+        Returns
+        -------
+        token : string
+            Token of the validated user
         """
 
         url = 'http://127.0.0.1:8000/api_token/'

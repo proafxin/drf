@@ -12,7 +12,7 @@ from rest_framework.status import (
 )
 from rest_framework.test import APITestCase
 
-from rest_api.tests.test_integration import (
+from rest_api.tests.test_end_to_end import (
     create_authors_articles,
     USERNAME,
     PASSWORD,
@@ -22,6 +22,33 @@ from rest_api.tests.test_integration import (
 class TestUnit(APITestCase):
     """
     Unit test for author article rest api
+
+    Methods
+    -------
+    setUp()
+        Use this method to declare anything you may need for testing
+
+    check_login()
+        Call this method to login at the start of every test for
+        authenticating yourself as a valid user
+
+    test_get_article_list()
+        Unit test to get the list of all articles
+    
+    test_get_article_detail()
+        Unit test to get a single article by id
+
+    test_post_article_detail()
+        Unit test to create a new article
+
+    test_get_author_list()
+        Unit test to get the list of all authors
+
+    test_get_author_detail()
+        Unit test to get a single author by id
+
+    test_post_author_detail()
+        Unit test to create a new author
     """
 
     def setUp(self):
@@ -45,7 +72,7 @@ class TestUnit(APITestCase):
 
     def test_get_article_list(self):
         """
-        Unit test for checking list of articles endpoint
+        Tests the GET endpoint /articles/
         """
 
         self.check_login()
@@ -71,7 +98,7 @@ class TestUnit(APITestCase):
 
     def test_get_article_detail(self):
         """
-        Unit test for checking individual article
+        Tests the GET endpoint /article/id/
         """
 
         self.check_login()
@@ -91,7 +118,7 @@ class TestUnit(APITestCase):
 
     def test_post_article_detail(self):
         """
-        Unit test for testing article post
+        Tests the POST endpoint /article/
         """
 
         self.check_login()
@@ -114,7 +141,7 @@ class TestUnit(APITestCase):
 
     def test_get_author_list(self):
         """
-        Unit test for testing list of authors
+        Tests the GET endpoint /authors/
         """
 
         self.check_login()
@@ -138,7 +165,7 @@ class TestUnit(APITestCase):
 
     def test_get_author_detail(self):
         """
-        Unit test for testing individual author
+        Tests the GET endpoint /author/id/
         """
 
         self.check_login()
@@ -160,7 +187,7 @@ class TestUnit(APITestCase):
 
     def test_post_author_detail(self):
         """
-        Unit test for testing author creation
+        Tests the POST endpoint /author/
         """
 
         self.check_login()

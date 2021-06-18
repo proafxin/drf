@@ -1,3 +1,9 @@
+"""
+Helper module for testing
+"""
+
+# Author: Masum Billal
+
 from django.contrib.auth.models import User
 
 from rest_api.models import (
